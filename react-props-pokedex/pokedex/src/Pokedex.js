@@ -1,35 +1,26 @@
-/** Pokedex
-Is provided, via props, an array of objects describing different pokemon,
-and renders a sequence of Pokecard components.*/
+import Pokecard from './Pokecard.js'
+import pokemany from './pokemonStats.js'
 
-// pokecard >>> div charmancder img<> type: exp /div
-// pokedex >>>
-// pokestats.map((p => id: name: ect))
-// app builds the page
-import pokemons from "./pokemonStats.js";
-import Pokecard from "./Pokecard.js";
-
-/**renders Pokecard components, passing each component a single pokemon object from
- * the pokemons array
+/**renders Pokecard components, passing each component a single pokemon object
+ * from pokemonStats.js array via app.js
  *
  * pokemon object : {id, name, image, type, base_experience}
  */
-function Pokedex() {
+function Pokedex ({ pokeData = pokemany }) {
   const myStyles = {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-  };
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around'
+  }
 
   return (
     <div style={myStyles}>
-      {pokemons.map((pokemon) => (
-        //TODO: ASK WHAT is best practice when passing whole objects as props??
-        <Pokecard {...pokemon} />
+      {pokeData.map(pokemon => (
+        <Pokecard pokemon={pokemon} />
       ))}
     </div>
-  );
+  )
 }
 
-export default Pokedex;
+export default Pokedex
